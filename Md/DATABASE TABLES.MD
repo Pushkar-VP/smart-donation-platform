@@ -941,6 +941,7 @@ Our final database will have 11 tables:
 10. recommendations
 11. suspicious_activities
 
+
 1. 👤 users
 
 This is the central authentication table.
