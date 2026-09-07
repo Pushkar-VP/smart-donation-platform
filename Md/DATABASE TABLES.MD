@@ -922,7 +922,7 @@ Amount Suggestion     Campaign Approval    Detection
                   │
                   ↓
                 MYSQL
-   ### Smart Donation Platform — Final Database Schema v1.0             
+   ### Smart Donation Platform Final Database Schema v1.0             
 🗄️ Smart Donation Platform — Final Database Schema v1.0
 
 We'll use MySQL.
@@ -1395,3 +1395,27 @@ User/Donor → Recommendations	            1 : N
 Campaign → Recommendations	              1 : N
 User → Suspicious Activities	            1 : N
 Donation → Suspicious Activities	        1 : N
+
+
+⚠️ One database design point we'll handle carefully
+
+The users table contains both donors and organizations.
+
+So technically:
+
+users
+ ├── donor
+ ├── organization
+ └── admin
+
+But donor_interests and donations.donor_id should only reference users whose role = 'donor'.
+
+MySQL foreign keys alone won't automatically enforce that role. Flask's backend validation will enforce it.
+
+Similarly, campaigns.organization_id will reference an actual organization record.
+
+This is a good example of why we need both:
+
+Database constraints + backend validation.
+
+![alt text](image.png)

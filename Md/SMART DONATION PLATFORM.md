@@ -610,3 +610,4 @@ Manage Users
  ↓
 View Analytics
 
+$ ER diagram ![alt text](image.png)
